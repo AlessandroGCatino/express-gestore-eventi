@@ -29,9 +29,13 @@ const update = (req, res)=>{
     if(!title || !description || !date || !maxSeats){
         return res.status(400).send("Inserisci tutti i dati dell'evento da modificare")
     }
-    ModelEvent.saveOnDB({"id": requestedEventID, ...req.body})
+    try {
+        ModelEvent.updateDB({"id": requestedEventID, ...req.body})
+    } catch (error) {
+        res.send(`Errore durante il salvataggio su DB: ${error}`);
+    }
+    
     res.send("Evento modificato")
-
 
 }
 

@@ -26,13 +26,16 @@ class ModelEvent {
 
 
     static saveOnDB(event){
+        addToList([...events, event])
+    }
+
+    static updateDB(event){
         let modifiedEvent = events.find(el => el.id === event.id)
         if(!modifiedEvent){
-            addToList([...events, event])
-        } else {
-            addToList(events.filter(ev => ev.id !== modifiedEvent.id))
-            addToList([...events, event])
+            throw new Error("Non ci sono eventi con l'id specificato")
         }
+        addToList(events.filter(ev => ev.id !== modifiedEvent.id))
+        addToList([...events, event])
     }
 
     static getFromDB(filters){
