@@ -3,6 +3,10 @@ const app = express();
 const path = require('path');
 const eventsRouter = require('./routers/eventsRouter.js');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 
 app.get("/", (req, res) => {
     const homepage = path.join(__dirname, "./index.html")

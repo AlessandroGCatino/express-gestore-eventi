@@ -3,6 +3,8 @@ const router = express.Router()
 const eventsController = require("../controllers/events.js")
 
 
+
+
 router.get("/", eventsController.index)
 
 router.post("/", eventsController.store)
